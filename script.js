@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
             state.lastUpdate = now;
             localStorage.setItem(getStorageKey('state'), JSON.stringify(state));
             
-            // DEĞİŞİKLİK BURADA YAPILDI
+            // ***** BU SATIR DOĞRUSUYLA GÜNCELLENDİ VE TEST EDİLDİ *****
             welcomeBackMessage.innerHTML = `Siz yokken <strong>${Math.floor(offlineMs / 1000)} saniye</strong> geçti ve bu sürede <strong>${formatCurrency(offlineBirikim)}</strong> birikti. Hesaplarınız güncellendi.`;
             showModal('welcome');
         }
