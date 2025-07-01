@@ -65,14 +65,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const animateValue = (element, start, end) => {
         if (start === end) return;
-        element.textContent = formatCurrency(end); // Animasyon yerine direkt güncelleme daha stabil olabilir.
-        // İsteğe bağlı olarak daha karmaşık bir animasyon fonksiyonu eklenebilir.
+        element.textContent = formatCurrency(end);
     };
 
     // ---- TEMEL UYGULAMA MANTIĞI ----
     const startCounter = () => {
         if (updateInterval) clearInterval(updateInterval);
-        updateValues(); // Anında bir kez çalıştır
+        updateValues(); 
         updateInterval = setInterval(updateValues, 1000);
     };
 
@@ -123,7 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
             state.lastUpdate = now;
             localStorage.setItem(getStorageKey('state'), JSON.stringify(state));
             
-            welcomeBackMessage.textContent = `${Math.floor(offlineMs / 1000)} saniye sonra tekrar hoş geldiniz. Hesaplarınız güncellendi.`;
+            // DEĞİŞİKLİK BURADA YAPILDI
+            welcomeBackMessage.innerHTML = `Siz yokken <strong>${Math.floor(offlineMs / 1000)} saniye</strong> geçti ve bu sürede <strong>${formatCurrency(offlineBirikim)}</strong> birikti. Hesaplarınız güncellendi.`;
             showModal('welcome');
         }
     };
@@ -220,10 +220,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (settings) {
             handleOfflineProgress();
             startCounter();
-            showView('app'); // HATAYI DÜZELTEN ANAHTAR ADIM
+            showView('app');
         } else {
             showModal('settings');
-            showView('app'); // Ayar olmasa bile ana arayüzü göster
+            showView('app'); 
         }
     };
 
